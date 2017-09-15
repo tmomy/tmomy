@@ -290,6 +290,199 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/15/调度算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tmomy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/15/调度算法/" itemprop="url">计算机操作系统学习记录(二)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-15T21:45:30+08:00">
+                2017-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h2><p>在OS中调度的实质是一种资源分配，因而调度算法是指：根据系统的资源分配策略所规定的资源分配算法。</p>
+<h3 id="先来先服务和短作业-进程-优先调度算法"><a href="#先来先服务和短作业-进程-优先调度算法" class="headerlink" title="先来先服务和短作业(进程)优先调度算法"></a>先来先服务和短作业(进程)优先调度算法</h3><h4 id="1-先来先服务调度算法"><a href="#1-先来先服务调度算法" class="headerlink" title="1. 先来先服务调度算法"></a>1. 先来先服务调度算法</h4><p>先来先服务(FCFS)调度算法是一种最简单的调度算法，该算法既可用于作业调度，也可用于进程调度。FCFS算法比较有利于长作业(进程)，而不利于短作业(进程)。</p>
+<h4 id="2-短作业-进程-优先调度算法"><a href="#2-短作业-进程-优先调度算法" class="headerlink" title="2. 短作业(进程)优先调度算法"></a>2. 短作业(进程)优先调度算法</h4><p>短作业(进程)优先调度算法SJ(P)F，是指对短作业或短进程优先调度的算法。它们可以分别用于作业调度和进程调度。短作业优先(SJF)的调度算法是从后备队列中选择一个或若干个估计运行时间最短的作业，将它们调入内存运行。而短进程优先(SPF)调度算法则是从就绪队列中选出一个估计运行时间最短的进程，将处理机分配给它，使它立即执行并一直执行到完成，或发生某事件而被阻塞放弃处理机时再重新调度。</p>
+<p>SJ(P)F 调度算法缺点：</p>
+<p>(1) 该算法对长作业不利，由于调度程序总是优先调度那些(即使是后进来的)短作业(进程)，将导致长作业(进程)长期不被调度。</p>
+<p>(2) 该算法完全未考虑作业的紧迫程度，因而不能保证紧迫性作业(进程)会被及时处理.</p>
+<p>(3) 由于作业(进程)的长短只是根据用户所提供的估计执行时间而定的，而用户又可能会有意或无意地缩短其作业的估计运行时间，致使该算法不一定能真正做到短作业优先调度。</p>
+<h3 id="高优先权优先调度算法"><a href="#高优先权优先调度算法" class="headerlink" title="高优先权优先调度算法"></a>高优先权优先调度算法</h3><h4 id="1-优先权调度算法类型"><a href="#1-优先权调度算法类型" class="headerlink" title="1. 优先权调度算法类型"></a>1. 优先权调度算法类型</h4><p>为了照顾紧迫型作业，使之在进入系统后便获得优先处理，引入了最高优先权优先(FPF)调度算法。当把该算法用于作业调度时，系统将从后备队列中选择若干个优先权最高的作业装入内存。当用于进程调度时，该算法是把处理机分配给就绪队列中优先权最高的进程，这时，又可进一步把该算法分成如下两种：</p>
+<p><strong>(1) 非抢占式优先权算法</strong></p>
+<p>在这种方式下，系统一旦把处理机分配给就绪队列中优先权最高的进程后，该进程便一直执行下去，直至完成；或因发生某事件使该进程放弃处理机时，系统方可再将处理机重新分配给另一优先权最高的进程。</p>
+<p><strong>(2) 抢占式优先权调度算法</strong></p>
+<p>在这种方式下，系统同样是把处理机分配给优先权最高的进程，使之执行。但在其执行期间，只要又出现了另一个其优先权更高的进程，进程调度程序就立即停止当前进程(原优先权最高的进程)的执行，重新将处理机分配给新到的优先权最高的进程。</p>
+<h4 id="2-优先权的类型"><a href="#2-优先权的类型" class="headerlink" title="2. 优先权的类型"></a>2. 优先权的类型</h4><p>对于最高优先权优先调度算法，其关键在于：它是使用静态优先权，还是用动态优先权，以及如何确定进程的优先权。</p>
+<p><strong>(1) 静态优先权</strong></p>
+<p>静态优先权是创建进程时确定的，且在进程的整个运行期间保持不变。确定进程优先权的依据有如下三个方面：</p>
+<ul>
+<li><strong>进程类型。</strong> 通常系统进程(如接收进程、对换进程、磁盘I/O进程)的优先权高于一般用户进程的优先权。</li>
+<li><strong>进程对资源的需求。</strong> 如进程的估计执行时间及内存需要量的多少，对这些要求少的进程赋予较高的优先权。</li>
+<li><strong>用户要求。</strong> 这是由用户进程的紧迫程度及用户付费用的多少来确定优先权的。</li>
+</ul>
+<p>静态优先权法简单易行，系统开销小，但不够精确，很可能出现优先权低的作业长期没有被调度的情况，因此，仅在要求不高的系统中才使用静态优先权。</p>
+<p><strong> (2) 动态优先权</strong></p>
+<p>动态优先权是指在创建进程时所赋予的优先权，是可以随进程的推进或随其等待时间的增加而改变的，以便或得更好的调度性能。例如，我们可以规定，在就绪队列中的进程，随其等待时间的增长，其优先权以速率a 提高。若所有的进程都具有相同的优先权初值，则显然是最先进入就绪队列的进程将因其动态优先权变得最高而优先获得处理机。</p>
+<p>在FCFS算法。若所有的就绪进程具有各不相同的优先权初值，那么，对于优先权初值低的进程，在等待了足够的时间后，其优先权便可能升为最高，从而可以获得处理机。</p>
+<p>当采用抢占式优先权调度算法时，如果再规定当前进程的优先权以速率b 下降，则可防止一个长作业长期地垄断处理机。</p>
+<h4 id="3-高响应比优先调度算法"><a href="#3-高响应比优先调度算法" class="headerlink" title="3. 高响应比优先调度算法"></a>3. 高响应比优先调度算法</h4><p>在批处理系统中，短作业优先算法是一种比较好的算法，其主要的不足之处是长作业的运行得不到保证。如果我们能为每个作业引入前面所述的动态优先权，并使作业的优先级随着等待时间的增加而以速率a提高，则长作业在等待一定的时间后，必然有机会分配到处理机。该优先权的变化规律可描述为：</p>
+<p><img src="http://ow9vb1e0u.bkt.clouddn.com/1_20170915105849.png" alt="image"></p>
+<p>由于等待时间与服务时间之和就是系统对该作业的响应时间，故该优先权又相当于响应Rp。又可表示为：</p>
+<p>  <img src="http://ow9vb1e0u.bkt.clouddn.com/2_20170915110018.png" alt="image"></p>
+<p>由上式可以看出：</p>
+<ul>
+<li>如果作业的等待时间相同，则要求服务的时间愈短，其优先权愈高，因而该算法有利于短作业。</li>
+<li>当要求服务的时间相同时，作业的优先权决定于其等待时间，等待时间愈长，其优先权愈高，因而它实现的是先来先服务。</li>
+<li>对于长作业，作业的优先级可以随等待时间的增加而提高，当其等待时间足够长时，其优先级便可升到很高，从而也可获得处理机。</li>
+</ul>
+<h3 id="3-基于时间片的轮转调度算法"><a href="#3-基于时间片的轮转调度算法" class="headerlink" title="3. 基于时间片的轮转调度算法"></a>3. 基于时间片的轮转调度算法</h3><p>在分时系统中，为保证能及时响应用户的请求，必须采用基于时间片的轮<br>转式进程调度算法。，广泛采用多级反馈队列调度算法。</p>
+<h4 id="1-时间片轮转法"><a href="#1-时间片轮转法" class="headerlink" title="1. 时间片轮转法"></a>1. 时间片轮转法</h4><p><strong>基本原理</strong></p>
+<p>在早期的时间片轮转法中，系统将所有的就绪进程按先来先服务的原则排成一个队列，每次调度时，把CPU分配给队首进程，并令其执行一个时间片。。时间片的大小从几ms 到几百ms。当执行的时间片用完时，由一个计时器发出时钟中断请求，调度程序便据此信号来停止该进程的执行，并将它送往就绪队列的末尾；然后，再把处理机分配给就绪队列中新的队首进程，同时也让它执行一个时间片。这样就可以保证就绪队列中的所有进程在一给定的时间内均能获得一时间片的处理机执行时间。系统能在给定的时间内响应所有用户的请求。</p>
+<p><strong>时间片大小的确定</strong></p>
+<p>在时间片轮转算法中，时间片的大小对系统性能有很大的影响，如选择很小的时间片将有利于短作业，因为它能较快地完成，但会频繁地发生中断、进程上下文的切换，从而增加系统的开销；反之，如选择太长的时间片，使得每个进程都能在一个时间片内完成，时间片轮转算法便退化为FCFS算法，无法满足交互式用户的需求。</p>
+<h3 id="产生死锁的原因和必要条件"><a href="#产生死锁的原因和必要条件" class="headerlink" title="产生死锁的原因和必要条件"></a>产生死锁的原因和必要条件</h3><p><strong>死锁(Deadlock)</strong> 是指多个进程在运行过程中因争夺资源而造成的一种僵局(DeadkyEmbrace),当进程处于这种僵持状态时，若无外力作用，它们都无法向前推进。</p>
+<h4 id="1-产生死锁的原因"><a href="#1-产生死锁的原因" class="headerlink" title="1.产生死锁的原因"></a>1.产生死锁的原因</h4><p>产生死锁的原因可归结如下两点：</p>
+<ul>
+<li><strong>竞争资源。</strong> 当系统中供多个进程共享的资源数目不足以满足诸进程的需要时，会引起诸进程对资源的竞争而产生死锁。</li>
+<li><strong>进程间推进顺序非法。</strong> 进程在运行过程中，请求和释放资源的顺序不当。</li>
+</ul>
+<h4 id="竞争资源引起进程死锁"><a href="#竞争资源引起进程死锁" class="headerlink" title="竞争资源引起进程死锁"></a>竞争资源引起进程死锁</h4><p><strong>(1) 可剥夺和非剥夺性资源</strong></p>
+<p>系统中的资源可分为两类，一类是可剥夺性资源，是指某进程在获得该类资源后，该资源可以再被其他进程或系统剥夺，例如：处理机(CPU)、主存。另一类资源是不可剥夺性资源，当系统把这类资源分配给某进程后，不能强行收回，只能在进程用完后自行释放，如I/O资源。</p>
+<p><strong>(2) 竞争非剥夺性资源</strong></p>
+<p>在系统中所配置的非剥夺性资源，由于他们数量不能满足诸进程运行时的需求，会使进程在运行过程中，因争夺这些资源而陷入僵局。</p>
+<p><strong>(3) 竞争临时性资源</strong></p>
+<p>打印机资源属于可顺序重复使用型资源，称为永久性资源。还有一种是所谓的临时性资源，这是指由一个进程产生，被另一进程使用一短暂时间后便无用的资源，故也称之为消耗性资源，它也可能引起死锁。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/14/处理机调度与死锁/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -695,7 +888,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -705,7 +898,7 @@
             
             
             <div class="site-state-item site-state-categories">
-              <a href="/categoreies/index.html">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -717,7 +910,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
